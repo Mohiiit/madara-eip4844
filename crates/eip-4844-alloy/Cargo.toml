@@ -1,0 +1,40 @@
+[package]
+name = "eip-4844-alloy"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+alloy-primitives = { workspace = true, features = ["rlp"] }
+alloy-rlp = { workspace = true }
+alloy-eips = { workspace = true }
+alloy-consensus = { workspace = true }
+alloy-network = { workspace = true }
+alloy-rpc-types = { workspace = true }
+alloy-rpc-client = { workspace = true }
+alloy-node-bindings = { workspace = true }
+alloy-provider = {workspace = true}
+alloy-signer-wallet.workspace = true
+#alloy-serde = { workspace = true, optional = true }
+
+sha2 = "0.10"
+
+# kzg
+thiserror = { workspace = true, optional = true }
+c-kzg = { workspace = true, features = ["serde"], optional = true }
+
+# arbitrary
+arbitrary = { workspace = true, features = ["derive"], optional = true }
+
+# serde
+serde = { workspace = true, features = ["derive"], optional = true }
+serde_json.workspace = true
+
+tokio = { workspace = true, features = ["rt", "rt-multi-thread"] }
+eyre = "0.6.12"
+
+
+[features]
+k256 = ["alloy-primitives/k256"]
+c-kzg = ["dep:c-kzg", "dep:thiserror", "alloy-eips/kzg"]
